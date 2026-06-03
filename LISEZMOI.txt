@@ -1,0 +1,49 @@
+MARVEL MCU GUIDE — DOSSIER POUR GITHUB
+======================================
+
+Dossier : C:\Users\BOUQUET\Documents\marvel-guide
+(Independant de Suivi Mission, ABT, Secourisme)
+
+ETAPE 1 — Creer le depot GitHub
+-------------------------------
+Nom du depot : marvel-guide
+Compte : parisien2403-blip
+Public > Create
+
+ETAPE 2 — Envoyer les fichiers
+-------------------------------
+IMPORTANT : il faut tout le dossier, pas seulement index.html.
+
+Sur PC (le plus simple) :
+  1. Zipper ce dossier marvel-guide en marvel-guide.zip
+  2. Sur GitHub : Upload files > glisser le ZIP
+     OU utiliser GitHub Desktop / git push
+
+A la racine du depot il faut :
+  index.html, manifest.json, manifest.webmanifest, sw.js
+  icon-192.png, icon-512.png, _config.yml, BUILD.txt
+  le dossier img/ (films, heroes, logo, fond, intro.mp4)
+
+Ne pas envoyer :
+  regen-icons.ps1, LISEZMOI.txt, LANCER.bat (optionnel PC)
+  dossiers "Recherche Images" (deja exclus ici)
+
+Taille totale : environ 23 Mo (OK pour GitHub).
+
+ETAPE 3 — GitHub Pages
+----------------------
+Settings > Pages > Deploy from a branch
+Branche = principal (main), dossier = / (root)
+Attendre 10-15 minutes.
+
+ETAPE 4 — Adresse
+-----------------
+https://parisien2403-blip.github.io/marvel-guide/
+
+ETAPE 5 — Installer sur le telephone
+--------------------------------------
+Supprimer ancienne icone si besoin.
+Ouvrir l adresse > Installer l application (Marvel MCU).
+iPhone : Safari > Partager > Sur l ecran d accueil.
+
+Test : .../marvel-guide/manifest.json doit afficher du JSON.

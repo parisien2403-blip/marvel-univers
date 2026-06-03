@@ -1,0 +1,5 @@
+Pas besoin de .nojekyll si _config.yml est present.
+
+Si manifest.json = 404 apres upload :
+  re-uploade _config.yml + BUILD.txt + index.html
+  verifie Pages = Deploy from a branch (pas Actions)
