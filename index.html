@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Marvel — Guide MCU</title>
+<meta name="theme-color" content="#ED1D24">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Marvel MCU">
+<meta name="application-name" content="Marvel MCU">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--red:#ED1D24;--red-d:#B71C1C;--gold:#F0CA50;--bg:#0a0a0f;--card:rgba(20,20,31,.92);--text:#f5f5f5;--muted:#9aa0b5}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,sans-serif;color:var(--text);padding-bottom:72px;background-color:var(--bg);background-image:linear-gradient(rgba(10,10,15,.78),rgba(10,10,15,.88)),url('fond.jpg');background-size:cover;background-position:center top;background-attachment:fixed;background-repeat:no-repeat}
+.SCREEN{max-width:560px;margin:0 auto;min-height:100vh}
+.HIDDEN{display:none!important}
+#P0{background:transparent;padding:28px 16px 40px;text-align:center;min-height:100vh}
+#P0 h1{font-size:1.6em;margin:8px 0;letter-spacing:.12em;text-transform:uppercase;background:linear-gradient(90deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#P0 .tag{font-size:.78em;color:var(--muted);margin-bottom:28px;line-height:1.5}
+.HOME-LOGO{display:block;width:min(300px,90vw);margin:0 auto 14px;border-radius:14px;box-shadow:0 10px 28px rgba(237,29,36,.3)}
+.MODE-GRID{display:grid;gap:12px;max-width:360px;margin:0 auto}
+.MODE{background:var(--card);border:2px solid rgba(255,255,255,.08);border-radius:16px;padding:20px 16px;cursor:pointer;text-align:left;transition:border-color .15s;backdrop-filter:blur(6px)}
+.MODE:active{border-color:var(--red)}
+.MODE-ICO{font-size:2em;margin-bottom:6px}
+.MODE-T{font-weight:800;font-size:.95em;text-transform:uppercase;letter-spacing:.04em}
+.MODE-D{font-size:.74em;color:var(--muted);margin-top:6px;line-height:1.45}
+.APP-HDR{background:linear-gradient(90deg,var(--red-d),#8B0000);padding:12px 14px;position:sticky;top:0;z-index:50;box-shadow:0 4px 20px rgba(237,29,36,.25)}
+.HDR-TOP{display:flex;align-items:center;gap:10px}
+.HDR-TITLE{flex:1;font-weight:800;font-size:.9em;text-transform:uppercase;letter-spacing:.05em}
+.BTN-BACK{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:8px;padding:8px 12px;font-weight:700;font-size:.76em;cursor:pointer}
+.PAD{padding:14px 12px 24px}
+.PROG{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:14px;border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(6px)}
+.PROG-T{font-size:.72em;color:var(--muted);text-transform:uppercase;font-weight:800;margin-bottom:6px}
+.PROG-BAR{height:8px;background:#2a2a3a;border-radius:4px;overflow:hidden}
+.PROG-FILL{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:4px;transition:width .3s}
+.PROG-N{font-size:.78em;margin-top:6px;color:var(--gold);font-weight:700}
+.TABS{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.TAB{flex:1;min-width:90px;padding:10px 8px;border:2px solid #2a2a3a;background:var(--card);color:var(--muted);border-radius:10px;font-weight:800;font-size:.68em;text-transform:uppercase;cursor:pointer;text-align:center}
+.TAB.on{border-color:var(--red);color:#fff;background:#2a1520}
+.HERO-GRID{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.HERO{background:var(--card);border:2px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;font-size:.62em;font-weight:800;text-transform:uppercase;line-height:1.25;backdrop-filter:blur(6px)}
+.HERO.on{border-color:var(--gold);color:var(--gold);background:#2a2515}
+.HERO-AV{width:52px;height:52px;margin:0 auto 6px;border-radius:50%;overflow:hidden;background:#2a2a3a;border:2px solid #3a3a4a;position:relative}
+.HERO.on .HERO-AV{border-color:var(--gold)}
+.HERO-AV img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.HERO-AV .em-fb{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:1.4em;position:absolute;inset:0}
+.HERO-AV.has-img .em-fb{display:none}
+.FILM{background:var(--card);border-radius:14px;margin-bottom:10px;border:2px solid rgba(255,255,255,.08);overflow:hidden;display:flex;gap:0;align-items:stretch;backdrop-filter:blur(6px)}
+.FILM.done{border-color:#2e5a2e;opacity:.85}
+.FILM-POSTER{width:56px;min-width:56px;align-self:stretch;background:linear-gradient(180deg,var(--red-d),#5a1010);position:relative;overflow:hidden}
+.FILM-POSTER img{width:100%;height:100%;object-fit:cover;display:block;min-height:88px}
+.FILM-N-FALL{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1em;color:var(--gold);background:linear-gradient(180deg,var(--red-d),#5a1010)}
+.FILM-POSTER.has-img .FILM-N-FALL{display:none}
+.FILM-B{flex:1;padding:12px}
+.FILM-T{font-weight:800;font-size:.88em;line-height:1.3}
+.FILM-M{font-size:.68em;color:var(--muted);margin-top:4px}
+.FILM-H{margin-top:6px;font-size:.62em;color:var(--gold);font-weight:700}
+.FILM-ACT{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.BTN-SML{padding:7px 12px;border-radius:20px;border:none;font-weight:800;font-size:.65em;text-transform:uppercase;cursor:pointer}
+.BTN-VU{background:#1b3d1b;color:#a5d6a7;border:1px solid #4caf50}
+.BTN-VU.off{background:#2a2a3a;color:var(--muted);border-color:#444}
+.BTN-DP{background:#1a2744;color:#90caf9;border:1px solid #1565C0;text-decoration:none;display:inline-block}
+.HINT{font-size:.72em;color:var(--muted);line-height:1.45;margin:0 0 12px;padding:10px;background:rgba(20,24,32,.9);border-radius:10px;border-left:3px solid var(--gold);backdrop-filter:blur(6px)}
+.NEXT{background:linear-gradient(135deg,rgba(42,21,32,.92),rgba(20,20,31,.92));border:2px solid var(--gold);border-radius:14px;padding:14px;margin-bottom:14px;backdrop-filter:blur(6px)}
+.NEXT-L{font-size:.68em;color:var(--gold);font-weight:800;text-transform:uppercase;margin-bottom:4px}
+.NEXT-T{font-weight:800;font-size:.95em}
+.NEXT-ACT{margin-top:10px}
+.NEXT-ROW{display:flex;gap:12px;align-items:flex-start;margin-top:8px}
+.NEXT-POSTER{width:64px;min-width:64px;border-radius:8px;overflow:hidden;background:#2a1520;border:1px solid #3a3040}
+.NEXT-POSTER img{width:100%;display:block;aspect-ratio:2/3;object-fit:cover}
+.NEXT-POSTER .NEXT-N-FALL{display:flex;align-items:center;justify-content:center;aspect-ratio:2/3;font-size:1.4em;background:linear-gradient(180deg,var(--red-d),#5a1010);color:var(--gold)}
+.NEXT-POSTER.has-img .NEXT-N-FALL{display:none}
+#P-LAUNCH{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:28px 20px;text-align:center}
+#P-LAUNCH .HOME-LOGO{margin-bottom:24px}
+.LAUNCH-TAG{font-size:.82em;color:var(--muted);margin:0 0 32px;line-height:1.5;max-width:320px}
+.BTN-RASSEMBLE{margin-top:8px;padding:18px 28px;border:none;border-radius:999px;cursor:pointer;font-weight:900;font-size:.95em;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--red-d),#6a0000);box-shadow:0 0 0 2px var(--gold),0 12px 32px rgba(237,29,36,.45);animation:rassemble-pulse 2.2s ease-in-out infinite}
+.BTN-RASSEMBLE:active{transform:scale(.97);animation:none}
+.BTN-RASSEMBLE:disabled{opacity:.7;cursor:default;animation:none}
+@keyframes rassemble-pulse{0%,100%{box-shadow:0 0 0 2px var(--gold),0 12px 32px rgba(237,29,36,.4)}50%{box-shadow:0 0 0 4px var(--gold),0 16px 40px rgba(240,202,80,.35)}}
+#P-INTRO{position:fixed;inset:0;z-index:500;background:#000;display:flex;align-items:center;justify-content:center}
+#INTRO-VID{width:100%;height:100%;object-fit:cover;background:#000}
+</style>
+</head>
+<body>
+
+<div id="P-LAUNCH" class="SCREEN">
+<img class="HOME-LOGO" src="logo.png" alt="Marvel">
+<p class="LAUNCH-TAG">Les héros attendent votre signal…</p>
+<button type="button" class="BTN-RASSEMBLE" id="BTN-RASSEMBLE" onclick="rassembler()">Avengers Rassemblement</button>
+</div>
+
+<div id="P-INTRO" class="HIDDEN">
+<video id="INTRO-VID" playsinline webkit-playsinline preload="auto" src="intro.mp4" onended="finIntro()"></video>
+</div>
+
+<div id="P0" class="SCREEN HIDDEN">
+<img class="HOME-LOGO" src="logo.png" alt="Marvel">
+<h1>Marvel MCU</h1>
+<p class="tag">Guide maison pour votre femme fan de Marvel<br>Chronologie · Héros · Progression<br><small style="opacity:.8">▶ Disney+ ouvre la fiche film — un clic sur Lecture et c'est parti</small></p>
+<div class="MODE-GRID">
+<div class="MODE" onclick="ouvrir('chrono')"><div class="MODE-ICO">⏳</div><div class="MODE-T">Ordre chronologique</div><div class="MODE-D">L'histoire MCU dans l'ordre où elle se déroule — le vrai parcours du héros</div></div>
+<div class="MODE" onclick="ouvrir('release')"><div class="MODE-ICO">🎬</div><div class="MODE-T">Ordre de sortie</div><div class="MODE-D">Comme au cinéma, de Iron Man (2008) jusqu'aux derniers films</div></div>
+<div class="MODE" onclick="ouvrir('hero')"><div class="MODE-ICO">🛡️</div><div class="MODE-T">Par héros</div><div class="MODE-D">Tous les films d'un personnage — Iron Man, Thor, Spider-Man…</div></div>
+</div>
+</div>
+
+<div id="P-LIST" class="SCREEN HIDDEN">
+<div class="APP-HDR">
+<div class="HDR-TOP"><button class="BTN-BACK" onclick="show('P0')">← Accueil</button><span class="HDR-TITLE" id="LIST-TITLE">—</span></div>
+</div>
+<div class="PAD">
+<div class="PROG"><div class="PROG-T">Progression</div><div class="PROG-BAR"><div class="PROG-FILL" id="PROG-FILL"></div></div><div class="PROG-N" id="PROG-N">—</div></div>
+<div id="NEXT-BOX" class="NEXT HIDDEN"></div>
+<div id="EXTRA-PAD"></div>
+<div id="FILM-LIST"></div>
+</div>
+</div>
+
+<script>
+var VU_KEY='marvel_vu_v1';
+var MODE='chrono',HERO='all';
+
+var HEROES=[
+ {id:'all',em:'⭐',l:'Tous'},
+ {id:'iron',em:'🤖',l:'Iron Man'},
+ {id:'cap',em:'🛡️',l:'Captain America'},
+ {id:'thor',em:'⚡',l:'Thor'},
+ {id:'hulk',em:'💚',l:'Hulk'},
+ {id:'widow',em:'🕷️',l:'Black Widow'},
+ {id:'guard',em:'🚀',l:'Gardiens'},
+ {id:'ant',em:'🐜',l:'Ant-Man'},
+ {id:'strange',em:'🔮',l:'Doctor Strange'},
+ {id:'spider',em:'🕸️',l:'Spider-Man'},
+ {id:'panther',em:'🐾',l:'Black Panther'},
+ {id:'marvel',em:'⭐',l:'Captain Marvel'},
+ {id:'avengers',em:'🦸',l:'Avengers'}
+];
+
+// chrono = ordre chronologique MCU · release = sortie cinéma
+var DP_BASE='https://www.disneyplus.com/fr-fr/browse/entity-';
+
+var FILMS=[
+ {id:'cap1',t:'Captain America : First Avenger',y:2011,chrono:1,release:5,heroes:['cap'],phase:1,dp:'8e68c43a-117c-4f4d-b217-0db106a1a614'},
+ {id:'cm',t:'Captain Marvel',y:2019,chrono:2,release:21,heroes:['marvel'],phase:3,dp:'1e383a14-1ea6-4345-9ab8-fd37618669af'},
+ {id:'im1',t:'Iron Man',y:2008,chrono:3,release:1,heroes:['iron','avengers'],phase:1,dp:'0c520152-b81f-4c20-9310-003debd1947e'},
+ {id:'im2',t:'Iron Man 2',y:2010,chrono:4,release:3,heroes:['iron','avengers'],phase:1,dp:'85c5529d-c053-4fa4-9957-4906eb5aedc6'},
+ {id:'hulk',t:'The Incredible Hulk',y:2008,chrono:5,release:2,heroes:['hulk','avengers'],phase:1,dp:'30d00f7b-331a-4f43-b9e1-1989d39cb1a3'},
+ {id:'thor1',t:'Thor',y:2011,chrono:6,release:4,heroes:['thor','avengers'],phase:1,dp:'479d41e3-8438-4ba4-b93d-8223220e069c'},
+ {id:'av1',t:'Avengers',y:2012,chrono:7,release:6,heroes:['iron','cap','thor','hulk','widow','avengers'],phase:1,dp:'3a5596d6-5133-4a8e-8d21-00e1531a4e0f'},
+ {id:'im3',t:'Iron Man 3',y:2013,chrono:8,release:7,heroes:['iron','avengers'],phase:2,dp:'e8569c2d-85ec-42a4-8811-b2618d494a40'},
+ {id:'thor2',t:'Thor : The Dark World',y:2013,chrono:9,release:8,heroes:['thor','avengers'],phase:2,dp:'7c4f4e28-4152-4f64-90ec-8b7f682c33d4'},
+ {id:'cap2',t:'Captain America : Winter Soldier',y:2014,chrono:10,release:9,heroes:['cap','widow','avengers'],phase:2,dp:'ef333a5c-b855-4d3e-a7d9-d9e142b6dc7d'},
+ {id:'gotg1',t:'Guardians of the Galaxy',y:2014,chrono:11,release:10,heroes:['guard','avengers'],phase:2,dp:'c9ee959b-7249-4a4c-9708-9ffd1ddb00f1'},
+ {id:'gotg2',t:'Guardians of the Galaxy Vol. 2',y:2017,chrono:12,release:15,heroes:['guard','avengers'],phase:2,dp:'9fcd7087-c151-49dc-aeb9-b2f9943fd4e6'},
+ {id:'av2',t:'Avengers : Age of Ultron',y:2015,chrono:13,release:11,heroes:['iron','cap','thor','hulk','widow','avengers'],phase:2,dp:'39740da6-d484-471b-8dd7-a70c6151d705'},
+ {id:'ant1',t:'Ant-Man',y:2015,chrono:14,release:12,heroes:['ant','avengers'],phase:2,dp:'af42798c-b9db-457f-b748-5e1f029c1ece'},
+ {id:'cap3',t:'Captain America : Civil War',y:2016,chrono:15,release:13,heroes:['cap','iron','widow','spider','avengers'],phase:3,dp:'2bd19267-1387-4b51-98e6-5189ff28e9c9'},
+ {id:'bw',t:'Black Widow',y:2021,chrono:16,release:24,heroes:['widow','avengers'],phase:3,dp:'d9cd6bd1-bcf8-4a3b-8f92-0fdd4f79ac08'},
+ {id:'bp1',t:'Black Panther',y:2018,chrono:17,release:18,heroes:['panther','avengers'],phase:3,dp:'8904b1b5-da2c-4ff1-b389-dc81825559fd'},
+ {id:'ds1',t:'Doctor Strange',y:2016,chrono:18,release:14,heroes:['strange','avengers'],phase:3,dp:'43a741e8-2369-4577-9bec-ef94f4aaae0b'},
+ {id:'thor3',t:'Thor : Ragnarok',y:2017,chrono:19,release:17,heroes:['thor','hulk','avengers'],phase:3,dp:'766280de-0c00-4781-a388-2c85c5b4e259'},
+ {id:'ant2',t:'Ant-Man and the Wasp',y:2018,chrono:20,release:20,heroes:['ant','avengers'],phase:3,dp:'3533ca7b-e187-4bf5-a65c-7c903cd2d4ad'},
+ {id:'av3',t:'Avengers : Infinity War',y:2018,chrono:21,release:19,heroes:['iron','cap','thor','widow','guard','strange','spider','panther','avengers'],phase:3,dp:'9a136e06-852a-41bf-b71d-fa061cb43225'},
+ {id:'av4',t:'Avengers : Endgame',y:2019,chrono:22,release:22,heroes:['iron','cap','thor','widow','hulk','avengers'],phase:3,dp:'b39aa962-be56-4b09-a536-98617031717f'},
+ {id:'shang',t:'Shang-Chi',y:2021,chrono:23,release:25,heroes:['avengers'],phase:4,dp:'92243dd0-bcfe-4365-ae76-1fa3cf1a2ab9'},
+ {id:'eternals',t:'Eternals',y:2021,chrono:24,release:26,heroes:['avengers'],phase:4,dp:'b042efa2-6650-48fd-bf35-ea285a5a5649'},
+ {id:'spider2',t:'Spider-Man : Far From Home',y:2019,chrono:25,release:23,heroes:['spider','avengers'],phase:3,dp:'2ca3cca0-bd2b-4934-93c0-c03d27fb249e'},
+ {id:'spider3',t:'Spider-Man : No Way Home',y:2021,chrono:26,release:27,heroes:['spider','strange','avengers'],phase:4,dp:'d8e24be4-2fb2-4891-bd08-5b27964398e2'},
+ {id:'ds2',t:'Doctor Strange : Multiverse of Madness',y:2022,chrono:27,release:28,heroes:['strange','avengers'],phase:4,dp:'2f51b691-b22a-42be-9c19-6bbabd2563e4'},
+ {id:'thor4',t:'Thor : Love and Thunder',y:2022,chrono:28,release:29,heroes:['thor','guard','avengers'],phase:4,dp:'0007d7a0-2515-411e-9294-2de6a7b8d00e'},
+ {id:'bp2',t:'Black Panther : Wakanda Forever',y:2022,chrono:29,release:30,heroes:['panther','avengers'],phase:4,dp:'86e14fdb-3841-4282-ad38-07c8c4aab4b6'},
+ {id:'ant3',t:'Ant-Man : Quantumania',y:2023,chrono:30,release:31,heroes:['ant','avengers'],phase:5,dp:'eb1453f3-48aa-4af0-85f5-8ca4916c7415'},
+ {id:'gotg3',t:'Guardians of the Galaxy Vol. 3',y:2023,chrono:31,release:32,heroes:['guard','avengers'],phase:5,dp:'820f0ded-3254-42c5-a7e4-7c044ff6dd65'},
+ {id:'marvels',t:'The Marvels',y:2023,chrono:32,release:33,heroes:['marvel','avengers'],phase:5,dp:'75c90eca-8969-4edb-ac1a-7165cff2671c'},
+ {id:'deadpool',t:'Deadpool & Wolverine',y:2024,chrono:33,release:34,heroes:['avengers'],phase:5,dp:'120ae1e6-2240-4924-a4ce-f8de6e28b0b1'}
+];
+
+function loadVu(){try{var v=JSON.parse(localStorage.getItem(VU_KEY)||'{}');return v&&typeof v==='object'?v:{};}catch(e){return{};}}
+function saveVu(v){localStorage.setItem(VU_KEY,JSON.stringify(v));}
+function isVu(id){return!!loadVu()[id];}
+function toggleVu(id){var v=loadVu();v[id]=!v[id];if(!v[id])delete v[id];saveVu(v);renderList();}
+
+function show(id){
+ document.getElementById('P-LAUNCH').classList.toggle('HIDDEN',id!=='P-LAUNCH');
+ document.getElementById('P0').classList.toggle('HIDDEN',id!=='P0');
+ document.getElementById('P-LIST').classList.toggle('HIDDEN',id!=='P-LIST');
+}
+
+function rassembler(){
+ var btn=document.getElementById('BTN-RASSEMBLE'),intro=document.getElementById('P-INTRO'),vid=document.getElementById('INTRO-VID');
+ btn.disabled=true;
+ document.getElementById('P-LAUNCH').classList.add('HIDDEN');
+ intro.classList.remove('HIDDEN');
+ vid.currentTime=0;
+ vid.play().catch(function(){finIntro();});
+}
+
+function finIntro(){
+ var vid=document.getElementById('INTRO-VID');
+ vid.pause();
+ document.getElementById('P-INTRO').classList.add('HIDDEN');
+ document.getElementById('BTN-RASSEMBLE').disabled=false;
+ show('P0');
+}
+
+function dpUrl(f){
+ if(f.dp)return DP_BASE+f.dp;
+ return 'https://www.disneyplus.com/fr-fr/search?q='+encodeURIComponent(f.t.replace(/ : /g,' '));
+}
+
+var IMG_EXTS=['jpg','jpeg','png','webp','avif'];
+function imgBase(folder,id){return id;}
+function imgTag(folder,id,cls,alt){
+ var base=imgBase(folder,id),exts=IMG_EXTS.slice(),first=exts.shift();
+ return '<img class="'+cls+'" src="'+base+'.'+first+'" alt="'+alt+'" loading="lazy" data-exts="'+exts.join(',')+'" onload="this.parentElement.classList.add(\'has-img\')" onerror="imgTryNext(this,\''+folder+'\',\''+id+'\')">';
+}
+function imgTryNext(el,folder,id){
+ var exts=el.dataset.exts?el.dataset.exts.split(','):[];
+ if(exts.length){el.dataset.exts=exts.slice(1).join(',');el.src=imgBase(folder,id)+'.'+exts[0];return;}
+ el.remove();
+}
+function filmPoster(id,n){
+ return '<div class="FILM-POSTER">'+imgTag('films',id,'FILM-IMG','')+'<span class="FILM-N-FALL">'+n+'</span></div>';
+}
+function heroAvatar(id,em){
+ return '<div class="HERO-AV">'+imgTag('heroes',id,'HERO-IMG','')+'<span class="em-fb">'+em+'</span></div>';
+}
+function nextPoster(id){
+ return '<div class="NEXT-POSTER">'+imgTag('films',id,'NEXT-IMG','')+'<span class="NEXT-N-FALL">🎬</span></div>';
+}
+
+function sortedFilms(){
+ var list=FILMS.slice();
+ if(MODE==='hero'&&HERO!=='all')list=list.filter(function(f){return f.heroes.indexOf(HERO)>=0;});
+ if(MODE==='chrono')list.sort(function(a,b){return a.chrono-b.chrono;});
+ else if(MODE==='release')list.sort(function(a,b){return a.release-b.release;});
+ else if(MODE==='hero')list.sort(function(a,b){return a.chrono-b.chrono;});
+ return list;
+}
+
+function heroLbl(ids){return ids.map(function(id){var h=HEROES.find(function(x){return x.id===id;});return h?h.l:id;}).join(' · ');}
+
+function renderList(){
+ var list=sortedFilms(),vu=loadVu(),done=0,html='',i,f,next=null;
+ list.forEach(function(f){if(vu[f.id])done++;else if(!next)next=f;});
+ var pct=list.length?Math.round(done/list.length*100):0;
+ document.getElementById('PROG-FILL').style.width=pct+'%';
+ document.getElementById('PROG-N').textContent=done+' / '+list.length+' vus ('+pct+'%)';
+ var nb=document.getElementById('NEXT-BOX');
+ if(next&&done<list.length){
+  nb.classList.remove('HIDDEN');
+  nb.innerHTML='<div class="NEXT-L">▶ Prochain à voir</div><div class="NEXT-ROW">'+nextPoster(next.id)+'<div><div class="NEXT-T">'+next.t+' ('+next.y+')</div><div class="NEXT-ACT"><a class="BTN-SML BTN-DP" href="'+dpUrl(next)+'" target="_blank" rel="noopener">▶ Ouvrir dans Disney+</a></div></div></div>';
+ }else nb.classList.add('HIDDEN');
+ for(i=0;i<list.length;i++){
+  f=list[i];
+  html+='<div class="FILM'+(vu[f.id]?' done':'')+'">'+filmPoster(f.id,i+1)+'<div class="FILM-B"><div class="FILM-T">'+f.t+'</div><div class="FILM-M">'+f.y+' · Phase '+f.phase+'</div><div class="FILM-H">'+heroLbl(f.heroes)+'</div><div class="FILM-ACT"><button type="button" class="BTN-SML BTN-VU'+(vu[f.id]?'':' off')+'" onclick="toggleVu(\''+f.id+'\')">'+(vu[f.id]?'✓ Vu':'Marquer vu')+'</button><a class="BTN-SML BTN-DP" href="'+dpUrl(f)+'" target="_blank" rel="noopener">▶ Disney+</a></div></div></div>';
+ }
+ document.getElementById('FILM-LIST').innerHTML=html||'<p class="HINT">Aucun film pour ce héros.</p>';
+}
+
+function renderHeroTabs(){
+ var h='<p class="HINT">Choisissez un héros pour filtrer la liste des films.</p><div class="HERO-GRID">';
+ HEROES.forEach(function(x){
+  if(x.id==='all')return;
+  h+='<div class="HERO'+(HERO===x.id?' on':'')+'" onclick="setHero(\''+x.id+'\')">'+heroAvatar(x.id,x.em)+x.l+'</div>';
+ });
+ h+='</div>';
+ document.getElementById('EXTRA-PAD').innerHTML=h;
+}
+
+function setHero(id){HERO=id;renderList();renderHeroTabs();}
+
+function ouvrir(m){
+ MODE=m;HERO='all';
+ document.getElementById('LIST-TITLE').textContent=m==='chrono'?'Ordre chronologique':m==='release'?'Ordre de sortie':'Par héros';
+ document.getElementById('EXTRA-PAD').innerHTML=m==='hero'?'<p class="HINT">Les séries Disney+ (Loki, WandaVision…) ne sont pas listées ici — focus films pour commencer simple.</p>':'<p class="HINT">Cochez « Vu » au fur et à mesure. Le bouton ▶ Disney+ ouvre directement la fiche du film (app ou navigateur) — il reste à appuyer sur Lecture. Connectez-vous sur le même appareil.</p>';
+ if(m==='hero')renderHeroTabs();
+ renderList();show('P-LIST');
+}
+
+if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(function(){});
+</script>
+</body>
+</html>
